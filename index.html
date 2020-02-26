@@ -1,50 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <metal charset ="utf-8">
-    <title>Poll</title>
-  </head>
-  <body>
+
+<head>
+    <metal charset="utf-8">
+        <title>Poll</title>
+</head>
+
+<body>
     <form class="" action="index.html" method="post">
-    <div>
-      <h2>
-        <label for ="text"> Poll Question: </label>
-        <textarea id="textarea" name="textarea"></textarea>
-      </h2>
-    <div>
-        <ol>
-            <li>
-                <label for ="text"> Choice: </label>
-                <input type="text" id="text" name="text">
-            </li>
+        <div>
+            <h2>
+                <label for="text"> Poll Question: </label>
+                <textarea id="textarea" name="textarea"></textarea>
+            </h2>
+            <div>
+                <ol id="choice-list">
+                    <li>
+                        <label for="text"> Choice: </label>
+                        <input type="text" id="text" name="text">
+                    </li>
 
-            <li>
-                <label for ="text"> Choice: </label>
-                <input type="text" id="text" name="text">
-            </li>
+                    <li>
+                        <label for="text"> Choice: </label>
+                        <input type="text" id="text" name="text">
+                    </li>
 
-            <li>
-                <label for ="text"> Choice:</label>
-                <input type="text" id="text" name="text">
-            </li>
-        </ol>  
-    </div>
+                    <li>
+                        <label for="text"> Choice:</label>
+                        <input type="text" id="text" name="text">
+                    </li>
+                </ol>
+            </div>
 
-      <button type="submit" id="submitNewAnswer" name="button">Add another answer</button>
-      <br>
-      <button type="submit" id="submitNewPoll" name="button">Create poll</button>
+            <button type="submit" id="submitNewAnswer" name="button">Add another answer</button>
+            <br>
+            <button type="submit" name="button">Create poll</button>
     </form>
-  </body>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script>
-    var count = 4
-    $('#submitNewAnswer').click(function() {
-        // submit new answer
+    <div id="history"></div>
 
-    });
-    $('#submitNext').click(function() {
-        // submit entire poll
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+        var count = 4
+        $('#submitNewAnswer').click(function () {
+            event.preventDefault();
+            $("#choice-list").append("<li> <label for =\"text\">Choice:</label> <input type=\"text\" id=\"text\" name=\"text\"></li>");
+        });
+        $('form').on('submit', function(event) {
+            const form = $(this); // JQuery object representing the form
+            event.preventDefault(); // Don't really submit the form
 
-    });
-  </script>
+            // Create a new list
+            const list = $('<ul></ul>');
+
+            // Translate each input value into a list item
+            const inputs = form.find('input'); // JQuery object represent all inputs
+            for (let input of inputs) {
+                input = $(input); // Turn into a JQuery object
+                const li = $(`<li>${input.val()}</li>`); // New list item
+                list.append(li);
+                input.val(''); // Empty out the box
+            };
+            $('#history').append(list);
+      });
+    </script>
+</body>
+
 </html>
