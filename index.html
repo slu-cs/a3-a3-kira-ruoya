@@ -6,28 +6,28 @@
   </head>
   <body>
     <form class="" action="index.html" method="post">
-    <h2>
-        <label for ="text"> Poll Question: </label>
-        <input type="text" id="text" name="text">
-    </h2>
     <div>
-        <ol>
 
-            <li>
-                <label for ="text"> Choice: </label>
-                <input type="text" id="text" name="text">
-            </li>
 
-            <li>
-                <label for ="text"> Choice: </label>
-                <input type="text" id="text" name="text">
-            </li>
+      <div>
+        <label for ="text"> Poll Question: </label>
+        <textarea id="textarea" name="textarea"></textarea>
+      </div>
 
-            <li>
-                <label for ="text"> Choice:</label>
-                <input type="text" id="text" name="text">
-            </li>
-        </ol>  
+      <div>
+        <label for ="text"> Choice 1: </label>
+        <input type="text" id="text" name="text">
+      </div>
+
+      <div>
+        <label for ="text"> Choice 2: </label>
+        <input type="text" id="text" name="text">
+      </div>
+
+      <div>
+        <label for ="text"> Choice 3: </label>
+        <input type="text" id="text" name="text">
+      </div>
     </div>
 
       <button type="submit" id="submitNewAnswer" name="button">Add another answer</button>
@@ -40,10 +40,11 @@
     var count = 4
     $('#submitNewAnswer').click(function() {
         // submit new answer
+
     });
     $('#submitNext').click(function() {
         // submit entire poll
-        
+
     });
   </script>
 </html>
