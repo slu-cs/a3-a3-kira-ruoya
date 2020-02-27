@@ -63,11 +63,14 @@
             const inputs = form.find('input'); // JQuery object represent all inputs
             for (let input of inputs) {
                 input = $(input); // Turn into a JQuery object
-                const li = $(`<li>${input.val()}</li>`); // New list item
+                const li = $(`<li><input type="checkbox" id="check1" name="check1"  value="${input.val()}"><label for="check1">${input.val()}</label></li>`); // New list item
+              //  <input type="checkbox" id="check1" name="check1"  value="${input.val()}">
                 list.append(li);
                 input.val(''); // Empty out the box
             };
             $('#history').append(list);
+
+
       });
     </script>
 </body>
