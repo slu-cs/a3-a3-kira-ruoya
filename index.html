@@ -50,6 +50,12 @@
             const form = $(this); // JQuery object representing the form
             event.preventDefault(); // Don't really submit the form
 
+            // Create title for the poll question
+            const question = form.find('textarea')
+
+            //show question in the page
+            $('#history').append(`<h2>${question.val()}</h2>`);
+
             // Create a new list
             const list = $('<ul></ul>');
 
