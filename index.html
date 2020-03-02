@@ -75,10 +75,8 @@
             $('#history').append(list);
             $('#history').append(`<button type="button" id="submitPoll" name="button">Submit</button>`)
             $('#history').append(`<button type="submit" id="FinishPoll" name="button">Finish Poll and See Result</button>`)
-            //$('#submitPoll').click(function () {
-              //event.preventDefault();
-              //$('#submitPoll')prop( "checked", false );
-          //  });
+
+          // submit the poll   
           $('#submitPoll').click(function () {
             event.preventDefault();
             $('#check').prop('checked', false);
