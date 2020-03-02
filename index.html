@@ -34,7 +34,7 @@
 
             <button type="submit" id="submitNewAnswer" name="button">Add another answer</button>
             <br>
-            <button type="submit" name="button">Create poll</button>
+            <button type="submit" id="submit"  name="button">Create poll</button>
     </form>
     <div id="history"></div>
 
@@ -73,11 +73,23 @@
                 }
             };
             $('#history').append(list);
-            $('#history').append(`<button type="submit" id="submitPoll" name="button">Submit</button>`)
+            $('#history').append(`<button type="button" id="submitPoll" name="button">Submit</button>`)
             $('#history').append(`<button type="submit" id="FinishPoll" name="button">Finish Poll and See Result</button>`)
+            //$('#submitPoll').click(function () {
+              //event.preventDefault();
+              //$('#submitPoll')prop( "checked", false );
+          //  });
+          $('#submitPoll').click(function () {
+            event.preventDefault();
+            $('#check').prop('checked', false);
+
+          });
 
 
       });
+
+
+
     </script>
 </body>
 
