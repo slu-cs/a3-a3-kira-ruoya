@@ -44,9 +44,15 @@
             <br>
             <button class="ml-3 btn btn-secondary" type="submit" id="submit"  name="button">Create poll</button>
     </form>
-    <div id="history" class="d-flex justify-content-center mb-3" >
+    <div class="row">
+        <div id="poll" class="col-sm d-flex justify-content-center mb-3" >
         
+        </div>
+        <div id="voting" class="col-sm d-flex justify-content-center mb-3" >
+    
+        </div>
     </div>
+    
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -59,11 +65,11 @@
             const form = $(this); // JQuery object representing the form
             event.preventDefault(); // Don't really submit the form
 
-            $('#history').empty()
+            $('#poll').empty()
             // Create title for the poll question
             const question = form.find('textarea')
 
-            $('#history').append(`<div class="card w-50 ml-3 mt-3" >
+            $('#poll').append(`<div class="card w-75 ml-3 mt-3" >
                                     <div class="card-body">
                                         <h3 class="card-title" id="question"> </h3>
                                         <div id="answers" class="card-text">
@@ -79,6 +85,7 @@
 
             // Translate each input value into a list item
             const inputs = form.find('input'); // JQuery object represent all inputs
+        
             for (let input of inputs) {
                 input = $(input); // Turn into a JQuery object
 
@@ -90,21 +97,23 @@
                   input.val(''); // Empty out the box
                 }
             };
+        
             $('#answers').append(list);
             $('#answers').append(`<button class="btn btn-secondary m-3" type="button" id="submitPoll" name="button">Vote</button>`)
-            $('#answers').append(`<button class="btn btn-secondary" type="submit" id="FinishPoll" name="button">Finish Poll and See Result</button>`)
+            
+
+
 
           // submit the poll   
           $('#submitPoll').click(function () {
             event.preventDefault();
             $('#check').prop('checked', false);
+            $('#voting').append('<h1>Hello World</h1>');
 
           });
 
 
       });
-
-
 
     </script>
 </body>
