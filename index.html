@@ -3,20 +3,24 @@
 
 <head>
     <metal charset="utf-8">
-        <title>Poll</title>
+    <title>Poll</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body>
-    <form class="" action="index.html" method="post">
+    <h1 class="text-center">
+        Create Your Own Poll
+    </h1>
+    <form action="index.html" method="post">
         <div>
-            <h2>
-                <label for="text"> Poll Question: </label>
-                <textarea id="textarea" name="textarea"></textarea>
+            <h2 style="width: 50%" class="form-group">
+                <label for="text" class="ml-3"> Poll Question: </label>
+                <textarea rows="3" class="form-control m-3" type="text" id="text" name="text"> </textarea>
             </h2>
-            <div>
-                <ol id="choice-list">
+            <div class="form-group">
+                <ol class="" id="choice-list">
                     <li>
-                        <label for="text"> Choice: </label>
+                        <label classfor="text"> Choice: </label>
                         <input type="text" id="text" name="text">
                     </li>
 
@@ -32,11 +36,13 @@
                 </ol>
             </div>
 
-            <button type="submit" id="submitNewAnswer" name="button">Add another answer</button>
+            <button class="ml-3 mb-3" type="submit" id="submitNewAnswer" name="button">Add Choice</button>
             <br>
-            <button type="submit" id="submit"  name="button">Create poll</button>
+            <button class="ml-3" type="submit" id="submit"  name="button">Create poll</button>
     </form>
-    <div id="history"></div>
+    <div id="history" class="text-center">
+
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -58,7 +64,7 @@
             $('#history').append(`<h2>${question.val()}</h2>`);
 
             // Create a new list
-            const list = $('<ul></ul>');
+            const list = $('<ul style="list-style-type: none;"></ul>');
 
             // Translate each input value into a list item
             const inputs = form.find('input'); // JQuery object represent all inputs
