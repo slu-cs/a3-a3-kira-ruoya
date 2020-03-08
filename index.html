@@ -85,6 +85,14 @@
 
             // Translate each input value into a list item
             const inputs = form.find('input'); // JQuery object represent all inputs
+
+            $('#voting').append(`<table id="votes-table" style="width:100%">
+                                        <tr>
+                                            <th>Choice</th>
+                                            <th>Votes</th>
+                                        </tr>
+                                        
+                                    </table>`);
         
             for (let input of inputs) {
                 input = $(input); // Turn into a JQuery object
@@ -92,23 +100,21 @@
                 // only print check box when users put answer in the input
                 if (input.val()!= ''){
                     
-                  const li = $(`<li><input class="form-check-input" type="checkbox" id="check" name="check" value="${input.val()}"><label class="form-check-label" for="check1">${input.val()}</label></li>`); // New list item
-                  list.append(li);
-                  input.val(''); // Empty out the box
+                    const li = $(`<li><input class="form-check-input" type="checkbox" id="check" name="check" value="${input.val()}"><label class="form-check-label" for="check1">${input.val()}</label></li>`); // New list item
+                    list.append(li);
+                    input.val(''); // Empty out the box
                 }
             };
+            question.val('');
+    
         
             $('#answers').append(list);
             $('#answers').append(`<button class="btn btn-secondary m-3" type="button" id="submitPoll" name="button">Vote</button>`)
-            
-
-
 
           // submit the poll   
           $('#submitPoll').click(function () {
             event.preventDefault();
             $('#check').prop('checked', false);
-            $('#voting').append('<h1>Hello World</h1>');
 
           });
 
