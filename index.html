@@ -8,13 +8,17 @@
 </head>
 
 <body>
-    <h1 class="text-center">
-        Create Your Own Poll
-    </h1>
+    <div class="jumbotron bg-info">
+        <h1 class="display-4 text-center text-light">
+            Create Your Own Poll
+        </h1>
+   
+
+    </div>
     <form action="index.html" method="post">
         <div>
             <h2 style="width: 50%" class="form-group">
-                <label for="text" class="ml-3"> Poll Question: </label>
+                <label for="text" class="ml-3">Question: </label>
                 <textarea rows="3" class="form-control m-3" type="text" id="text" name="text"> </textarea>
             </h2>
             <div class="form-group">
@@ -36,18 +40,17 @@
                 </ol>
             </div>
 
-            <button class="ml-3 mb-3" type="submit" id="submitNewAnswer" name="button">Add Choice</button>
+            <button class="ml-3 mb-3 btn btn-secondary" type="submit" id="submitNewAnswer" name="button">Add Choice</button>
             <br>
-            <button class="ml-3" type="submit" id="submit"  name="button">Create poll</button>
+            <button class="ml-3 btn btn-secondary" type="submit" id="submit"  name="button">Create poll</button>
     </form>
-    <div id="history" class="text-center">
-
+    <div id="history" class="d-flex justify-content-center mb-3" >
+        
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
-        var count = 4
         $('#submitNewAnswer').click(function () {
             event.preventDefault();
             $("#choice-list").append("<li> <label for =\"text\">Choice:</label> <input type=\"text\" id=\"text\" name=\"text\"></li>");
@@ -60,11 +63,19 @@
             // Create title for the poll question
             const question = form.find('textarea')
 
+            $('#history').append(`<div class="card w-50 ml-3 mt-3" >
+                                    <div class="card-body">
+                                        <h3 class="card-title" id="question"> </h3>
+                                        <div id="answers" class="card-text">
+                                        </div>
+                                    </div>
+                                </div>`);
+
             //show question in the page
-            $('#history').append(`<h2>${question.val()}</h2>`);
+            $('#question').append(`<h2>${question.val()}</h2>`);
 
             // Create a new list
-            const list = $('<ul style="list-style-type: none;"></ul>');
+            const list = $('<ul style="list-style-type: none;" class="form-check"></ul>');
 
             // Translate each input value into a list item
             const inputs = form.find('input'); // JQuery object represent all inputs
@@ -73,14 +84,15 @@
 
                 // only print check box when users put answer in the input
                 if (input.val()!= ''){
-                  const li = $(`<li><input type="checkbox" id="check" name="check"  value="${input.val()}"><label for="check1">${input.val()}</label></li>`); // New list item
+                    
+                  const li = $(`<li><input class="form-check-input" type="checkbox" id="check" name="check" value="${input.val()}"><label class="form-check-label" for="check1">${input.val()}</label></li>`); // New list item
                   list.append(li);
                   input.val(''); // Empty out the box
                 }
             };
-            $('#history').append(list);
-            $('#history').append(`<button type="button" id="submitPoll" name="button">Submit</button>`)
-            $('#history').append(`<button type="submit" id="FinishPoll" name="button">Finish Poll and See Result</button>`)
+            $('#answers').append(list);
+            $('#answers').append(`<button class="btn btn-secondary m-3" type="button" id="submitPoll" name="button">Vote</button>`)
+            $('#answers').append(`<button class="btn btn-secondary" type="submit" id="FinishPoll" name="button">Finish Poll and See Result</button>`)
 
           // submit the poll   
           $('#submitPoll').click(function () {
