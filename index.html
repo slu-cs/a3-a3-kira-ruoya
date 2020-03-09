@@ -48,7 +48,7 @@
         <div id="poll" class="col-sm d-flex justify-content-center mb-3" >
 
         </div>
-        <div id="voting" class="col-sm d-flex justify-content-center mb-3" >
+        <div id="voting" class="col-sm d-flex justify-content-center mb-3 mr-5" >
 
         </div>
     </div>
@@ -87,11 +87,15 @@
             const inputs = form.find('input'); // JQuery object represent all inputs
 
 
-            const table = $(`<table id="votes-table" style="width:100%">
+            const table = $(`<table id="votestable" class="table mr-5 border rounded">
+                                    <thead class="thead-dark">
                                         <tr>
                                             <th>Choice</th>
                                             <th>Votes</th>
                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
                                     </table>`)
             // create list to store counter
             var valueList = [];
@@ -137,16 +141,17 @@
           // finish the poll when all people done polling
           $('#finishPoll').click(function () {
             event.preventDefault();
+            $('#voting').append(table);
             // show the result of tall
             for (var i = 0; i<valueName.length; i++){
               const td =$(`<tr>
-                                <td>${valueName[i]}<td/>
-                                <td>${valueList[i]}<td/>
-                          <tr/>`);
-              table.append(td);
+                                <td>${valueName[i]}</td>
+                                <td>${valueList[i]}</td>
+                          </tr>`);
+                $("#votestable tbody").append(td);
             }
 
-            $('#voting').append(table);
+            
 
           });
 
