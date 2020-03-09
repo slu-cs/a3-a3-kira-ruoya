@@ -85,7 +85,7 @@
 
             // Translate each input value into a list item
             const inputs = form.find('input'); // JQuery object represent all inputs
-            console.log(inputs);
+
 
             const table = $(`<table id="votes-table" style="width:100%">
                                         <tr>
@@ -93,6 +93,7 @@
                                             <th>Votes</th>
                                         </tr>
                                     </table>`)
+            // create list to store counter
             var valueList = [];
             var valueName = [];
             for (let input of inputs) {
@@ -103,6 +104,7 @@
 
                     const li = $(`<li><input class="form-check-input" type="checkbox" id="check" name="check" value="${input.val()}"><label class="form-check-label" for="check1">${input.val()}</label></li>`); // New list item
                     list.append(li);
+                    //initialize counter
                     valueName.push(input.val());
                     valueList.push(0);
 
@@ -113,27 +115,29 @@
 
 
             $('#answers').append(list);
-            $('#answers').append(`<button class="btn btn-secondary m-3" type="button" id="submitPoll" name="button">Vote</button>`)
-            $('#answers').append(`<button class="btn btn-secondary m-3" type="button" id="finishPoll" name="button">Finish</button>`)
-            //$('#voting').append(table);
+            $('#answers').append(`<button class="btn btn-secondary m-3" type="button" id="submitPoll" name="button">Vote</button>`);
+            $('#answers').append(`<button class="btn btn-secondary m-3" type="button" id="finishPoll" name="button">Finish</button>`);
 
 
           // submit the poll
           $('#submitPoll').click(function () {
             event.preventDefault();
+            // update counter
             const checkboxes =form.find('input:checkbox');
             for (var i = 0; i < checkboxes.length;i++){
               if(checkboxes[i].checked){
                 valueList[i]+=1;
               }
             }
+            // uncheck all checkbox after recording the result
             $("input:checkbox").prop('checked', false);
 
-          //  $("input:checkbox").prop('checked', false);
 
           });
+          // finish the poll when all people done polling
           $('#finishPoll').click(function () {
             event.preventDefault();
+            // show the result of tall
             for (var i = 0; i<valueName.length; i++){
               const td =$(`<tr>
                                 <td>${valueName[i]}<td/>
@@ -141,7 +145,6 @@
                           <tr/>`);
               table.append(td);
             }
-
 
             $('#voting').append(table);
 
