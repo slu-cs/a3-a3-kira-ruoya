@@ -85,6 +85,7 @@
 
             // Translate each input value into a list item
             const inputs = form.find('input'); // JQuery object represent all inputs
+            console.log(inputs);
 
             const table = $(`<table id="votes-table" style="width:100%">
                                         <tr>
@@ -92,7 +93,8 @@
                                             <th>Votes</th>
                                         </tr>
                                     </table>`)
-
+            var valueList = [];
+            var valueName = [];
             for (let input of inputs) {
                 input = $(input); // Turn into a JQuery object
 
@@ -101,12 +103,8 @@
 
                     const li = $(`<li><input class="form-check-input" type="checkbox" id="check" name="check" value="${input.val()}"><label class="form-check-label" for="check1">${input.val()}</label></li>`); // New list item
                     list.append(li);
-
-                    const td =$(`<tr>
-                                    <td>${input.val()}<td/>
-                                    <td>0<td/>
-                                <tr/>`)
-                    table.append(td);
+                    valueName.push(input.val());
+                    valueList.push(0);
 
                     input.val(''); // Empty out the box
                 }
@@ -123,18 +121,31 @@
           // submit the poll
           $('#submitPoll').click(function () {
             event.preventDefault();
-            // uncheck all the check box
+            const checkboxes =form.find('input:checkbox');
+            for (var i = 0; i < checkboxes.length;i++){
+              if(checkboxes[i].checked){
+                valueList[i]+=1;
+              }
+            }
             $("input:checkbox").prop('checked', false);
+
+          //  $("input:checkbox").prop('checked', false);
 
           });
           $('#finishPoll').click(function () {
             event.preventDefault();
-            
+            for (var i = 0; i<valueName.length; i++){
+              const td =$(`<tr>
+                                <td>${valueName[i]}<td/>
+                                <td>${valueList[i]}<td/>
+                          <tr/>`);
+              table.append(td);
+            }
+
 
             $('#voting').append(table);
 
           });
-
 
 
       });
